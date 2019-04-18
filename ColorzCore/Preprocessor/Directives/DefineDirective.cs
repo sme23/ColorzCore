@@ -79,8 +79,10 @@ namespace ColorzCore.Preprocessor.Directives
                         else
                             p.Warning(parameters[0].MyLocation, "Redefining " + name + '.');
                     } */
-                    if(p.Definitions.ContainsKey(name))
+
+                    if (false && p.Definitions.ContainsKey(name))
                         p.Warning(parameters[0].MyLocation, "Redefining " + name + '.');
+
                     if (parameters.Count == 2)
                     {
                         Maybe<IList<Token>> toRepl = ExpandParam(p, parameters[1], Enumerable.Empty<string>());
