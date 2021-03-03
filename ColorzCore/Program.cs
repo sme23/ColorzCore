@@ -301,8 +301,25 @@ namespace ColorzCore
 
             foreach (KeyValuePair<TimeSpan, string> time in ExecTimer.Timer.SortedTimes)
             {
+
+                if (2*time.Key.Seconds > 20 && ExecTimer.Timer.Counts[time.Value] > 10)
+                    {
+
+                        log.Output.Write("  " + time.Value + ": " + time.Key.ToString() );
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        log.Output.WriteLine(" (" + ExecTimer.Timer.Counts[time.Value] + ")");
+                        Console.ResetColor();
+
+                    }          
+                else
+                    { 
+
                 log.Output.WriteLine("  " + time.Value + ": " + time.Key.ToString() + " (" + ExecTimer.Timer.Counts[time.Value] + ")");
-            }
+
+                    }
+
+                }
+            
 
             // Print total time
 
